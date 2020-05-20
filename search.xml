@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PyTorch Geometric的相关介绍</title>
+    <url>/2020/04/23/PyTorch-Geometric%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h3 id="数据结构和符号表示">数据结构和符号表示</h3>
+]]></content>
+      <categories>
+        <category>deepLearning</category>
+      </categories>
+      <tags>
+        <tag>graph data</tag>
+        <tag>GNN</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux安装pytorch geometric过程中遇到的一些坑和探索过程</title>
     <url>/2020/04/22/Linux%E5%AE%89%E8%A3%85pytorch-geometric%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%E5%92%8C%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/</url>
     <content><![CDATA[<a id="more"></a>
@@ -94,6 +107,39 @@ $ hexo deploy              # 提交远程仓库
       <tags>
         <tag>blog</tag>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自注意力图池化(self-attention graph pooling)的代码实验记录</title>
+    <url>/2020/04/23/%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%9B%BE%E6%B1%A0%E5%8C%96(self-attention%20graph%20pooling%20)%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<a id="more"></a>
+<p>为了在自己设计的model里面加入图池化操作，所以必须了解和看懂作者这个自注意力图池化(self-attention graph pooling)是如何实施的。作者的源代码以及论文可以看这里(<a href="https://github.com/inyeoplee77/SAGPool" target="_blank" rel="noopener">https://github.com/inyeoplee77/SAGPool</a>)，这篇文章主要记录自己如何跑通这个代码以及解决过程中所遇到的问题。</p>
+<h3 id="前期环境的准备">前期环境的准备</h3>
+<p>这个代码需要用到PyTorch Geometric：用于PyTorch的几何深度学习扩展库,具体的搭建过程以及环境准备，可以看上一篇blog：Linux安装pytorch geometric过程中遇到的一些坑和探索过程。</p>
+<h3 id="相关背景知识的介绍">相关背景知识的介绍</h3>
+<ol>
+<li>
+<p>这些年有一些先进的方法将深度学习应用到了图数据上。研究专注于将卷积神经网络推广到图数据上，包括重新定义图上的卷积和下采样（池化）。推广的卷积方法已经被证明有性能提升且被广泛使用。但是，下采样的方法仍然是一个难题且有提升空间。作者提出了一个基于自注意力的图的池化方法。使用图卷积的自注意力使得池化方法可以同时考虑顶点特征和图的拓扑结构。所提出的 SAGPool 是一个层次的自注意力图池化方法。该方法可以通过端到端的方式使用相对较少的参数学习到层次表示。自注意力机制用来区分结点是否丢弃掉还是保留。由于自注意力机制使用图卷积计算注意力分数，结点特征和图的拓扑结构可以被考虑其中。SAGPool 是第一个使用自注意力用于池化的方法，并且获得了很好的性能。</p>
+</li>
+<li>
+<p>SAGPool 的关键是它使用了 GNN 得到的注意力分数。SAGPool 层和模型架构，具体可以见下图：<br>
+<img src="/images/figure.png"><br>
+<img src="/images/figure1.png"></p>
+</li>
+<li>
+<p>Self-Attention Graph Pooling<br>
+Self-attention mask 注意力机制广泛应用在最近的深度学习研究中。这样的机制使得模型可以更专注于重要的特征，不那么关注不重要的特征。自注意力一般称为内注意力，允许输入特征作为自身注意力的标准 (Vaswani et al., 2017)。我们使用图卷积获得自注意力分数。举个例子，如果图卷积的公式是 Kipf &amp; Welling 使用的，那么自注意力分数 $Z \in R^{N\times1}$</p>
+</li>
+</ol>
+<h3 id="实验过程">实验过程</h3>
+]]></content>
+      <categories>
+        <category>论文</category>
+      </categories>
+      <tags>
+        <tag>GNN</tag>
+        <tag>pytorch</tag>
+        <tag>torch_geometric</tag>
       </tags>
   </entry>
 </search>
