@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>PyTorch Geometric的相关介绍</title>
-    <url>/2020/04/23/PyTorch-Geometric%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h3 id="数据结构和符号表示">数据结构和符号表示</h3>
-]]></content>
-      <categories>
-        <category>deepLearning</category>
-      </categories>
-      <tags>
-        <tag>graph data</tag>
-        <tag>GNN</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux安装pytorch geometric过程中遇到的一些坑和探索过程</title>
     <url>/2020/04/22/Linux%E5%AE%89%E8%A3%85pytorch-geometric%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%E5%92%8C%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/</url>
     <content><![CDATA[<a id="more"></a>
@@ -107,6 +94,19 @@ $ hexo deploy              # 提交远程仓库
       <tags>
         <tag>blog</tag>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PyTorch Geometric的相关介绍</title>
+    <url>/2020/04/23/PyTorch-Geometric%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h3 id="数据结构和符号表示">数据结构和符号表示</h3>
+]]></content>
+      <categories>
+        <category>deepLearning</category>
+      </categories>
+      <tags>
+        <tag>GNN</tag>
+        <tag>graph data</tag>
       </tags>
   </entry>
   <entry>
