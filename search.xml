@@ -97,19 +97,6 @@ $ hexo deploy              # 提交远程仓库
       </tags>
   </entry>
   <entry>
-    <title>PyTorch Geometric的相关介绍</title>
-    <url>/2020/04/23/PyTorch-Geometric%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h3 id="数据结构和符号表示">数据结构和符号表示</h3>
-]]></content>
-      <categories>
-        <category>deepLearning</category>
-      </categories>
-      <tags>
-        <tag>GNN</tag>
-        <tag>graph data</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>自注意力图池化(self-attention graph pooling)的代码实验记录</title>
     <url>/2020/04/23/%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%9B%BE%E6%B1%A0%E5%8C%96(self-attention%20graph%20pooling%20)%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<a id="more"></a>
@@ -140,6 +127,19 @@ Self-attention mask 注意力机制广泛应用在最近的深度学习研究中
         <tag>GNN</tag>
         <tag>pytorch</tag>
         <tag>torch_geometric</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PyTorch Geometric的相关介绍</title>
+    <url>/2020/04/23/PyTorch-Geometric%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h3 id="数据结构和符号表示">数据结构和符号表示</h3>
+]]></content>
+      <categories>
+        <category>deepLearning</category>
+      </categories>
+      <tags>
+        <tag>GNN</tag>
+        <tag>graph data</tag>
       </tags>
   </entry>
 </search>
