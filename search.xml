@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>PyTorch Geometric的相关介绍</title>
-    <url>/2020/04/23/PyTorch-Geometric%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h3 id="数据结构和符号表示">数据结构和符号表示</h3>
-]]></content>
-      <categories>
-        <category>deepLearning</category>
-      </categories>
-      <tags>
-        <tag>graph data</tag>
-        <tag>GNN</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux安装pytorch geometric过程中遇到的一些坑和探索过程</title>
     <url>/2020/04/22/Linux%E5%AE%89%E8%A3%85pytorch-geometric%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%E5%92%8C%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/</url>
     <content><![CDATA[<span id="more"></span>
@@ -100,6 +87,20 @@ timeout: 爬取数据的超时时间，默认是 10000ms ,如果在使用时发�
       <tags>
         <tag>blog</tag>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于多io的本地socket进程通信过程</title>
+    <url>/2022/03/31/%E5%9F%BA%E4%BA%8E%E5%A4%9Aio%E7%9A%84%E6%9C%AC%E5%9C%B0socket%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<span id="more"></span>
+]]></content>
+      <categories>
+        <category>C++ 相关</category>
+      </categories>
+      <tags>
+        <tag>domain unix socket</tag>
+        <tag>ipc</tag>
+        <tag>epoll</tag>
       </tags>
   </entry>
   <entry>
