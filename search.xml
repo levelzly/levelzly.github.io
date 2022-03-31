@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PyTorch Geometric的相关介绍</title>
+    <url>/2020/04/23/PyTorch-Geometric%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h3 id="数据结构和符号表示">数据结构和符号表示</h3>
+]]></content>
+      <categories>
+        <category>deepLearning</category>
+      </categories>
+      <tags>
+        <tag>graph data</tag>
+        <tag>GNN</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux安装pytorch geometric过程中遇到的一些坑和探索过程</title>
     <url>/2020/04/22/Linux%E5%AE%89%E8%A3%85pytorch-geometric%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%E5%92%8C%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
+    <content><![CDATA[<span id="more"></span>
 <p>最近在学习一篇ICML2019的一篇论文，关于SAGpool(self-attention graph pooling),即自注意力的图池化操作。一般来说在普通的序列数据应用池化操作，可以起到减少参数量，提高特征语义表示能力。那么把池化操作应用到图结构这种非欧式数据上，应该也可以起到类似的作用和功能。而且加上self-attention，相当于我们关注对于我们结果或者分类起作用的特征就行。这也是符合我们平时一般的简化工作流程。毕竟程序员就是需要“懒惰”。👽<br>
-而作者给出的代码 [<a href="https://github.com/inyeoplee77/SAGPool" target="_blank" rel="noopener">https://github.com/inyeoplee77/SAGPool</a>]正需要我们安装torch_geometric包，这个包是专门用于GNN (图神经网络)的。而且安装这个包，对于pytorch的版本还有一些环境的搭建有要求。下面我将记录下我在安装这个包以及配置环境过程中遇到的一些问题以及相应的解决方案。由于一般应用服务器是不同的用户，每个人的项目不一样，所需要的库和包的依赖也不一样，很难就用一套环境。所以一般需要使用者自己创建自己的环境。比如我为了执行我的项目，进行创建自己的环境。</p>
+而作者给出的代码 [<a href="https://github.com/inyeoplee77/SAGPool">https://github.com/inyeoplee77/SAGPool</a>]正需要我们安装torch_geometric包，这个包是专门用于GNN (图神经网络)的。而且安装这个包，对于pytorch的版本还有一些环境的搭建有要求。下面我将记录下我在安装这个包以及配置环境过程中遇到的一些问题以及相应的解决方案。由于一般应用服务器是不同的用户，每个人的项目不一样，所需要的库和包的依赖也不一样，很难就用一套环境。所以一般需要使用者自己创建自己的环境。比如我为了执行我的项目，进行创建自己的环境。</p>
 <h4 id="1-服务器环境">1. 服务器环境</h4>
 <ul>
 <li>OS 18.04.4 LTS</li>
@@ -14,21 +27,21 @@
 <li>python 3.6.6</li>
 </ul>
 <h4 id="2-配置自己的环境">2. 配置自己的环境</h4>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda create -n lyzhang(你的环境名字) python&#x3D;3.6</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n lyzhang(你的环境名字) python=3.6</span><br></pre></td></tr></table></figure>
 <h5 id="激活环境">激活环境</h5>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">source activate lyzhang &#x2F;&#x2F;激活环境</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">source activate lyzhang //激活环境</span><br></pre></td></tr></table></figure>
 <h4 id="安装pytorch">安装pytorch</h4>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda install -n lyzhang pytorch &#x2F;&#x2F;默认安装1.0.0，我这里安装1.4.0 因为安装Torch_geometric包需要pytorch1.2.0以上</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda install -n lyzhang pytorch //默认安装1.0.0，我这里安装1.4.0 因为安装Torch_geometric包需要pytorch1.2.0以上</span><br></pre></td></tr></table></figure>
 <h4 id="一些相关的命令">一些相关的命令</h4>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">source deactivate        关闭环境</span><br><span class="line">conda remove -n your_env_name(虚拟环境名称) --all</span><br><span class="line">conda remove --name your_env_name  package_name  # 删除环境中的某个包</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">source deactivate        关闭环境</span><br><span class="line">conda remove -n your_env_name(虚拟环境名称) --all</span><br><span class="line">conda remove --name your_env_name  package_name  # 删除环境中的某个包</span><br></pre></td></tr></table></figure>
 <h4 id="3-安装CUDA">3. 安装CUDA</h4>
 <p>从官网下载对应的.run文件cuda_10.2.89_440.33.01_linux.run，在环境中运行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo cuda_10.2.89_440.33.01_linux.run</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo cuda_10.2.89_440.33.01_linux.run</span><br></pre></td></tr></table></figure>
 <h4 id="4-安装Torch-geometric">4. 安装Torch_geometric</h4>
 <h5 id="开始出现的错误">开始出现的错误</h5>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">RuntimeError: Detected that PyTorch and torch_sparse were compiled with different CUDA versions. PyTorch has CUDA version 10.0 and torch_sparse has CUDA version 0.0. Please reinstall the torch_sparse that matches your PyTorch install.</span><br></pre></td></tr></table></figure>
 <h4 id="安装Torch-geometric之前需要安装的一些依赖，主要版本和我们安装的cuda一致，cuda10-0">安装Torch_geometric之前需要安装的一些依赖，主要版本和我们安装的cuda一致，cuda10.0</h4>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pip install torch-geometric \</span><br><span class="line">  torch-sparse&#x3D;&#x3D;latest+cu100 \</span><br><span class="line">  torch-scatter&#x3D;&#x3D;latest+cu100 \</span><br><span class="line">  torch-cluster&#x3D;&#x3D;latest+cu100 \</span><br><span class="line">  torch-spline-conv&#x3D;&#x3D;latest+cu100 \</span><br><span class="line">  -f https:&#x2F;&#x2F;pytorch-geometric.com&#x2F;whl&#x2F;torch-1.4.0.html</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install torch-geometric \</span><br><span class="line">  torch-sparse==latest+cu100 \</span><br><span class="line">  torch-scatter==latest+cu100 \</span><br><span class="line">  torch-cluster==latest+cu100 \</span><br><span class="line">  torch-spline-conv==latest+cu100 \</span><br><span class="line">  -f https://pytorch-geometric.com/whl/torch-1.4.0.html</span><br></pre></td></tr></table></figure>
 <h4 id="最后可以看到安装成功的页面">最后可以看到安装成功的页面</h4>
 <img src="/images/torch_geometric_success.png">]]></content>
       <categories>
@@ -40,45 +53,32 @@
       </tags>
   </entry>
   <entry>
-    <title>PyTorch Geometric的相关介绍</title>
-    <url>/2020/04/23/PyTorch-Geometric%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h3 id="数据结构和符号表示">数据结构和符号表示</h3>
-]]></content>
-      <categories>
-        <category>deepLearning</category>
-      </categories>
-      <tags>
-        <tag>GNN</tag>
-        <tag>graph data</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于搭建blog遇到的一些问题以及解决方法</title>
     <url>/2020/04/18/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BAblog%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<a id="more"></a>
+    <content><![CDATA[<span id="more"></span>
 <p>🤡很早之前就想自己搭建一个blog，用来记录学习和生活。实施了很多次，总是因为各种原因搁置。中间遇到很多问题也会让人想放弃🌚。这次就一鼓作气，逼迫自己一定要好好完成，希望自己能一直坚持下去💪。</p>
 <h3 id="介绍">介绍</h3>
 <p>关于 hexo + github 搭建个人博客的相关内容，我想只要你想了解，网上关于这类的教程和资料真的太全了，要自己搭建，即使是小白，也很轻松。为什么我不选用一些常规的平台去记录呢，比如csdn、简书、知乎、掘金等。我觉得虽然他们很方便，但是我觉得自定义设计比较少，就是没有个性。还有就是比较喜欢自己折腾，去探索这样的一个搭建过程。同时，这个过程，其实也是一个学习的过程。可以看到很多大佬书写他们的blog，很震撼也很羡慕🐸。</p>
 <h3 id="关于自定义菜单栏的设计">关于自定义菜单栏的设计</h3>
 <p>在Next主题的官方文档中有介绍，关于菜单栏的设置与自定义，在主题配置文件下，修改以下内容：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: /</span><br><span class="line">  archives: /archives</span><br><span class="line">  <span class="comment">#about: /about</span></span><br><span class="line">  <span class="comment">#categories: /categories</span></span><br><span class="line">  tags: /tags</span><br><span class="line">  <span class="comment">#commonweal: /404.html</span></span><br><span class="line">  deeplearing: /deeplearning || bath <span class="comment"># 新添加的一个页面</span></span><br></pre></td></tr></table></figure>
-<p>在deepLearning这个栏里，后面其实有|| 图标，也就是双竖杠后面接着我们去(<a href="http://www.fontawesome.com.cn/faicons/" target="_blank" rel="noopener">http://www.fontawesome.com.cn/faicons/</a>)寻找适合的图标在正式页面上显示的效果。<br>
+<p>在deepLearning这个栏里，后面其实有|| 图标，也就是双竖杠后面接着我们去(<a href="http://www.fontawesome.com.cn/faicons/">http://www.fontawesome.com.cn/faicons/</a>)寻找适合的图标在正式页面上显示的效果。<br>
 另外我们需要在NexT 主题目录下的 languages/{language}.yml下修改：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: 首页</span><br><span class="line">  archives: 归档</span><br><span class="line">  categories: 分类</span><br><span class="line">  tags: 标签</span><br><span class="line">  about: 关于</span><br><span class="line">  deeplearning: 深度学习     # 添加</span><br><span class="line">  search: 搜索</span><br><span class="line">  commonweal: 公益404</span><br><span class="line">  something: 有料</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: 首页</span><br><span class="line">  archives: 归档</span><br><span class="line">  categories: 分类</span><br><span class="line">  tags: 标签</span><br><span class="line">  about: 关于</span><br><span class="line">  deeplearning: 深度学习     # 添加</span><br><span class="line">  search: 搜索</span><br><span class="line">  commonweal: 公益404</span><br><span class="line">  something: 有料</span><br></pre></td></tr></table></figure>
 <p>创建页面或者点击出现 hexo换next主题点击层边栏菜单的选项的时候，点进去为cannot GET /20%/ bug,我们在去掉主题menu里面去掉/和||与提示关键字之间的空格。</p>
 <h3 id="关于引入豆瓣读书和豆瓣电影">关于引入豆瓣读书和豆瓣电影</h3>
 <p>基于上面的介绍，我们创建了books和movies这两个页面，用于链接你的豆瓣电影和豆瓣读书的阅读和观看记录，用于在你的blog中显示。</p>
 <h4 id="安装模板依赖">安装模板依赖</h4>
 <p>在我们blog中要调用豆瓣的资源，需要首先安装依赖模块，在blog目录下使用命令安装：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-douban --save</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-douban --save</span><br></pre></td></tr></table></figure>
 <h4 id="站点配置文件添加配置">站点配置文件添加配置</h4>
 <p>在站点根目录配置文件_config.xml下末尾添加如下配置：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">douban:</span><br><span class="line">  user: mythsman</span><br><span class="line">  <span class="built_in">builtin</span>: <span class="literal">false</span></span><br><span class="line">  book:</span><br><span class="line">    title: <span class="string">'This is my book title'</span></span><br><span class="line">    quote: <span class="string">'This is my book quote'</span></span><br><span class="line">  movie:</span><br><span class="line">    title: <span class="string">'This is my movie title'</span></span><br><span class="line">    quote: <span class="string">'This is my movie quote'</span></span><br><span class="line">  timeout: 10000</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">douban:</span><br><span class="line">  user: mythsman</span><br><span class="line">  <span class="built_in">builtin</span>: <span class="literal">false</span></span><br><span class="line">  book:</span><br><span class="line">    title: <span class="string">&#x27;This is my book title&#x27;</span></span><br><span class="line">    quote: <span class="string">&#x27;This is my book quote&#x27;</span></span><br><span class="line">  movie:</span><br><span class="line">    title: <span class="string">&#x27;This is my movie title&#x27;</span></span><br><span class="line">    quote: <span class="string">&#x27;This is my movie quote&#x27;</span></span><br><span class="line">  timeout: 10000</span><br></pre></td></tr></table></figure>
 <ul>
 <li>参数说明：</li>
 </ul>
 <blockquote>
-<p>user: 你的豆瓣ID.打开豆瓣，登入账户，然后在右上角点击 “个人主页” ，这时候地址栏的URL大概是这样：”<a href="https://www.douban.com/people/xxxxxx/%E2%80%9C" target="_blank" rel="noopener">https://www.douban.com/people/xxxxxx/“</a> ，其中的”xxxxxx”就是你的个人ID了。<br>
+<p>user: 你的豆瓣ID.打开豆瓣，登入账户，然后在右上角点击 “个人主页” ，这时候地址栏的URL大概是这样：”<a href="https://www.douban.com/people/xxxxxx/%E2%80%9C">https://www.douban.com/people/xxxxxx/“</a> ，其中的”xxxxxx”就是你的个人ID了。<br>
 builtin: 是否将生成页面的功能嵌入hexo s和hexo g中，默认是false,另一可选项为true(1.x.x版本新增配置项)。<br>
 title: 该页面的标题.<br>
 quote: 写在页面开头的一段话,支持html语法.<br>
@@ -89,20 +89,13 @@ timeout: 爬取数据的超时时间，默认是 10000ms ,如果在使用时发�
 <p>我们只需要在GitBash中输入以下命令：hexo clean &amp;&amp; hexo douban -bgm &amp;&amp; hexo g &amp;&amp; hexo s即可，注意其中开启hexo-douban的命令中，-bgm代表的是book、game、movie三个参数，如果只需要其中的一部分就只带你想要的那些参数。</p>
 <h3 id="关于修改默认字体">关于修改默认字体</h3>
 <p>1.修改配置文件_config.yml 将下列代码中减号“-”的部分修改成加号“+”的部分即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">文件路径：~&#x2F;blog&#x2F;themes&#x2F;next&#x2F;_config.yml</span><br><span class="line">font:</span><br><span class="line">- enable: false</span><br><span class="line">+ enable: true</span><br><span class="line"></span><br><span class="line">  # Uri of fonts host. E.g. &#x2F;&#x2F;fonts.googleapis.com (Default).</span><br><span class="line">+ host: https:&#x2F;&#x2F;fonts.loli.net</span><br><span class="line"></span><br><span class="line">  # Font options:</span><br><span class="line">  # &#96;external: true&#96; will load this font family from &#96;host&#96; above.</span><br><span class="line">  # &#96;family: Times New Roman&#96;. Without any quotes.</span><br><span class="line">  # &#96;size: xx&#96;. Use &#96;px&#96; as unit.</span><br><span class="line"></span><br><span class="line">  # Global font settings used for all elements in &lt;body&gt;.</span><br><span class="line">  global:</span><br><span class="line">    external: true</span><br><span class="line">+   family: Noto Serif SC</span><br><span class="line">    size:</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">文件路径：~/blog/themes/next/_config.yml</span><br><span class="line">font:</span><br><span class="line">- enable: false</span><br><span class="line">+ enable: true</span><br><span class="line"></span><br><span class="line">  # Uri of fonts host. E.g. //fonts.googleapis.com (Default).</span><br><span class="line">+ host: https://fonts.loli.net</span><br><span class="line"></span><br><span class="line">  # Font options:</span><br><span class="line">  # `external: true` will load this font family from `host` above.</span><br><span class="line">  # `family: Times New Roman`. Without any quotes.</span><br><span class="line">  # `size: xx`. Use `px` as unit.</span><br><span class="line"></span><br><span class="line">  # Global font settings used for all elements in &lt;body&gt;.</span><br><span class="line">  global:</span><br><span class="line">    external: true</span><br><span class="line">+   family: Noto Serif SC</span><br><span class="line">    size:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>2.修改配置文件<code>base.styl</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">文件路径：~&#x2F;blog&#x2F;themes&#x2F;next&#x2F;source&#x2F;css&#x2F;_variables&#x2F;base.styl</span><br><span class="line"></span><br><span class="line">-$font-family-monospace    &#x3D; consolas, Menlo, $font-family-chinese, monospace</span><br><span class="line">+$font-family-monospace    &#x3D; consolas, Menlo, $font-family-base, monospace</span><br><span class="line">-$font-family-monospace    &#x3D; get_font_family(&#39;codes&#39;), consolas, Menlo, $font-family-chinese, monospace if get_font_family(&#39;codes&#39;)</span><br><span class="line">+$font-family-monospace    &#x3D; get_font_family(&#39;codes&#39;), consolas, Menlo, $font-family-base, monospace if get_font_family(&#39;codes&#39;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">文件路径：~/blog/themes/next/source/css/_variables/base.styl</span><br><span class="line"></span><br><span class="line">-$font-family-monospace    = consolas, Menlo, $font-family-chinese, monospace</span><br><span class="line">+$font-family-monospace    = consolas, Menlo, $font-family-base, monospace</span><br><span class="line">-$font-family-monospace    = get_font_family(&#x27;codes&#x27;), consolas, Menlo, $font-family-chinese, monospace if get_font_family(&#x27;codes&#x27;)</span><br><span class="line">+$font-family-monospace    = get_font_family(&#x27;codes&#x27;), consolas, Menlo, $font-family-base, monospace if get_font_family(&#x27;codes&#x27;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>3.更改字体颜色</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">文件路径：~&#x2F;blog&#x2F;themes&#x2F;next&#x2F;source&#x2F;css&#x2F;_custom&#x2F;custom.styl</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;修改字体颜色</span><br><span class="line">body &#123;</span><br><span class="line">    color: #000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">文件路径：~/blog/themes/next/source/css/_custom/custom.styl</span><br><span class="line"></span><br><span class="line">//修改字体颜色</span><br><span class="line">body &#123;</span><br><span class="line">    color: #000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="以及一些hexo命令和注意事项">以及一些hexo命令和注意事项</h3>
-<pre><code class="language-bash">$ hexo new &quot;My New Post&quot;   # 创建新的页面
-
-$ hexo generate            # 生成静态页面
-
-$ hexo server              # 启动本地服务
-
-$ hexo deploy              # 提交远程仓库
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span>   <span class="comment"># 创建新的页面</span></span><br><span class="line"></span><br><span class="line">$ hexo generate            <span class="comment"># 生成静态页面</span></span><br><span class="line"></span><br><span class="line">$ hexo server              <span class="comment"># 启动本地服务</span></span><br><span class="line"></span><br><span class="line">$ hexo deploy              <span class="comment"># 提交远程仓库</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>blog</tag>
@@ -112,8 +105,8 @@ $ hexo deploy              # 提交远程仓库
   <entry>
     <title>自注意力图池化(self-attention graph pooling)的代码实验记录</title>
     <url>/2020/04/23/%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%9B%BE%E6%B1%A0%E5%8C%96(self-attention%20graph%20pooling%20)%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<a id="more"></a>
-<p>为了在自己设计的model里面加入图池化操作，所以必须了解和看懂作者这个自注意力图池化(self-attention graph pooling)是如何实施的。作者的源代码以及论文可以看这里(<a href="https://github.com/inyeoplee77/SAGPool" target="_blank" rel="noopener">https://github.com/inyeoplee77/SAGPool</a>)，这篇文章主要记录自己如何跑通这个代码以及解决过程中所遇到的问题。</p>
+    <content><![CDATA[<span id="more"></span>
+<p>为了在自己设计的model里面加入图池化操作，所以必须了解和看懂作者这个自注意力图池化(self-attention graph pooling)是如何实施的。作者的源代码以及论文可以看这里(<a href="https://github.com/inyeoplee77/SAGPool">https://github.com/inyeoplee77/SAGPool</a>)，这篇文章主要记录自己如何跑通这个代码以及解决过程中所遇到的问题。</p>
 <h3 id="前期环境的准备">前期环境的准备</h3>
 <p>这个代码需要用到PyTorch Geometric：用于PyTorch的几何深度学习扩展库,具体的搭建过程以及环境准备，可以看上一篇blog：Linux安装pytorch geometric过程中遇到的一些坑和探索过程。</p>
 <h3 id="相关背景知识的介绍">相关背景知识的介绍</h3>
